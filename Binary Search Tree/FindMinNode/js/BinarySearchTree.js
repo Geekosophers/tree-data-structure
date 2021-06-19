@@ -6,43 +6,53 @@ class BinarySearchTree{
   
     insert(data){
         var newNode = new Node(data);
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+        var length = null;
+        
+        if(width>height)
+            length = width/20;
+        else
+            length = height/30;
+        
+
         if(this.root === null){
             newNode.coord = coord;
             newNode.parentCoord = coord;
             newNode.level = 0;
-            newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), window.innerWidth/20);
+            newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), length);
             newNode.edgeToParent = new Line(newNode.parentCoord, newNode.coord);
             this.root = newNode;
         }
         else{
-            this.insertNode(this.root, newNode);
+            this.insertNode(this.root, newNode,length);
         }
     }
     
-    insertNode(node, newNode){
+    insertNode(node, newNode,length){
         if(newNode.data < node.data){
             if(node.left === null){
                 newNode.level = node.level + 1;
                 newNode.parentCoord = node.coord;
-                newNode.coord = [node.coord[0] - (3/newNode.level)*(window.innerWidth/20), node.coord[1] + window.innerWidth/20]
-                newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), window.innerWidth/20);
+                newNode.coord = [node.coord[0] - (3/newNode.level)*(length), node.coord[1] + length]
+                newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), length);
                 newNode.edgeToParent = new Line(newNode.parentCoord, newNode.coord);
                 node.left = newNode;
             }
             else
-                this.insertNode(node.left, newNode); 
+                this.insertNode(node.left, newNode,length); 
         }
         else{
             if(node.right === null){
                 newNode.level = node.level + 1;
                 newNode.parentCoord = node.coord;
-                newNode.coord = [node.coord[0] + (3/newNode.level)*(window.innerWidth/20), node.coord[1] + window.innerWidth/20];
-                newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), window.innerWidth/20);
+                newNode.coord = [node.coord[0] + (3/newNode.level)*(length), node.coord[1] + length];
+                newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), length);
                 newNode.edgeToParent = new Line(newNode.parentCoord, newNode.coord);
                 node.right = newNode;
             }
             else
-                this.insertNode(node.right,newNode);
+                this.insertNode(node.right,newNode,length);
         }
     }
 
