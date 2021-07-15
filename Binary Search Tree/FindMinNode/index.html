@@ -17,35 +17,40 @@
         <script src="js/Node.js"></script>
         <script src="js/Line.js"></script>
         <script src="js/Circle.js"></script>
+        <script src="js/ExtremePoints.js"></script>
         <script src="js/sketch.js"></script>
 
-        <div style="text-align: center;background-color: #e14e87;padding-top: 1.5rem;font-size: 2.4rem;">
-            <b>BST - Find Min Node</b>
+        <div style="display: flex;flex-direction: column;height: 100vh;">
+            <div>
+                <div style="text-align: center;background-color: #e14e87;padding-top: 1.5rem;font-size: 2.4rem;">
+                    <b>BST - Find Min Node</b>
+                </div>
+        
+                <div class="base-class">
+        
+                    <div style="display: flex;flex-direction: row;padding: 1.5rem 1.5rem 0 1.5rem;">
+                        <div style="padding-right: 0.5rem;white-space: nowrap;">Nodes (Preorder)</div>
+                    </div>
+        
+                    <div style="padding: 1.5rem; width: 100%;">
+                        <input type="text" id="nodesInput" placeholder="Enter comma separated node values" class="input-css"/>
+                    </div>
+        
+                    <div style="display: flex;flex-direction: row;">
+                        <div style="padding: 0 1.5rem;">
+                            <button class="btn-6 btn-6d" onclick="constructBST()" >Construct BST</button>
+                        </div>
+                        
+                        <div style="padding: 0 1.5rem;">
+                            <button class="btn-6 btn-6d" onclick="startAnimation()">Start Animation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="myCanvas" style="flex-grow: 1;"></div>
         </div>
 
-        <div class="base-class">
-
-            <div style="display: flex;flex-direction: row;padding: 1.5rem 1.5rem 0 1.5rem;">
-                <div style="padding-right: 0.5rem;white-space: nowrap;">Nodes (Preorder)</div>
-            </div>
-
-            <div style="padding: 1.5rem; width: 100%;">
-                <input type="text" id="nodesInput" placeholder="Enter comma separated node values" class="input-css"/>
-            </div>
-
-            <div style="display: flex;flex-direction: row;">
-                <div style="padding: 0 1.5rem;">
-                    <button class="btn-6 btn-6d" onclick="constructBST()" >Construct BST</button>
-                </div>
-                
-                <div style="padding: 0 1.5rem;">
-                    <button class="btn-6 btn-6d" onclick="startAnimation()">Start Animation</button>
-                </div>
-            </div>
-             
-        </div>
-
-        <div style="position: fixed; left: 0; bottom: 0;">
+        <div style="position: absolute; left: 0; bottom: 0;">
             <a href="https://www.geekosophers.com">
                 <button class="btn-animation">
                     <div style="font-size: 1.2rem; text-align: left;">An Initiative by</div>

@@ -23,9 +23,10 @@ class BinarySearchTree{
             newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), length);
             newNode.edgeToParent = new Line(newNode.parentCoord, newNode.coord);
             this.root = newNode;
+            return this.root;
         }
         else{
-            this.insertNode(this.root, newNode,length);
+            return this.insertNode(this.root, newNode,length);
         }
     }
     
@@ -38,9 +39,10 @@ class BinarySearchTree{
                 newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), length);
                 newNode.edgeToParent = new Line(newNode.parentCoord, newNode.coord);
                 node.left = newNode;
+                return node.left;
             }
             else
-                this.insertNode(node.left, newNode,length); 
+                return this.insertNode(node.left, newNode,length); 
         }
         else{
             if(node.right === null){
@@ -50,9 +52,10 @@ class BinarySearchTree{
                 newNode.circle = new Circle(newNode.coord[0], newNode.coord[1], newNode.data.toString(), length);
                 newNode.edgeToParent = new Line(newNode.parentCoord, newNode.coord);
                 node.right = newNode;
+                return node.right;
             }
             else
-                this.insertNode(node.right,newNode,length);
+                return this.insertNode(node.right,newNode,length);
         }
     }
 
