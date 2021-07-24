@@ -55,13 +55,15 @@
                 <div style="border-left: 6px solid #fff; height: 100%;"></div>
                 <div style="padding: 10px;">
                     <h3>ALGORITHM</h3>
-                    <p>if (node.data > n1 && node.data > n2) { </p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp; node = node.left;</p>
-                    <p>} else if (node.data < n1 && node.data < n2) { </p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp; node = node.right;</p>
-                    <p>} else {</p>
-                    <p>&nbsp;&nbsp;&nbsp;&nbsp; return node;</p>
-                    <p>}</p>
+                    <p id="statement1">function lca(node,n1,n2){</p>
+                    <p id="statement2">&nbsp;&nbsp;&nbsp;&nbsp; if (node.data > n1 && node.data > n2) {</p>
+                    <p id="statement3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lca(node.left,n1,n2);</p>
+                    <p id="statement4">&nbsp;&nbsp;&nbsp;&nbsp; } else if (node.data < n1 && node.data < n2) { </p>
+                    <p id="statement5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lca(node.right,n1,n2);</p>
+                    <p id="statement6">&nbsp;&nbsp;&nbsp;&nbsp; } else {</p>
+                    <p id="statement7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return node;</p>
+                    <p id="statement8">&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+                    <p id="statement9">}</p>
                 </div>
             </div>
             
