@@ -1,6 +1,6 @@
 <html>
     <head>
-        <title>BST - Find Min Node</title>
+        <title>BST - Least Common Ancestor</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="assets/favicon.png" />
         <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,7 +24,7 @@
         <div style="display: flex;flex-direction: column;height: 100vh;">
             <div>
                 <div style="text-align: center;background-color: #e14e87;padding-top: 1.5rem;font-size: 2.4rem;">
-                    <b>BST - Find Min Node</b>
+                    <b>BST - Least Common Ancestor</b>
                 </div>
         
                 <div class="base-class">
@@ -50,7 +50,21 @@
                     </div>
                 </div>
             </div>
-            <div id="myCanvas" style="flex-grow: 1;"></div>
+            <div style="display: flex;flex-direction: row;flex-grow: 1;">
+                <div id="myCanvas" style="flex-grow: 1;"></div>
+                <div style="border-left: 6px solid #fff; height: 100%;"></div>
+                <div style="padding: 10px;">
+                    <h3>ALGORITHM</h3>
+                    <p>if (node.data > n1 && node.data > n2) { </p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; node = node.left;</p>
+                    <p>} else if (node.data < n1 && node.data < n2) { </p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; node = node.right;</p>
+                    <p>} else {</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp; return node;</p>
+                    <p>}</p>
+                </div>
+            </div>
+            
         </div>
 
         <div style="position: absolute; left: 0; bottom: 0;" >
@@ -86,7 +100,6 @@
             }
 
             var startAnimation = function(){
-                constructBST();
                 play = true;
             }
         </script>

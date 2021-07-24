@@ -1,6 +1,6 @@
 var nodes = [];
 var edges = [];
-var coord = [window.innerWidth/2,window.innerWidth/20];
+var coord = [];
 var BST = null;
 var node = null;
 var n1 = null;
@@ -36,6 +36,7 @@ function setup(preOrderNodes, node1, node2) {
     var height = canvasDiv.offsetHeight;
     var sketchCanvas = createCanvas(width,height);
     sketchCanvas.parent("myCanvas");
+    coord = [canvasDiv.offsetWidth/2,canvasDiv.offsetWidth/20];
 }
 
 function draw() {
@@ -48,7 +49,7 @@ function draw() {
         // rect(ExtPoints.left, ExtPoints.top, ExtPoints.right-ExtPoints.left, ExtPoints.bottom-ExtPoints.top);
 
         BST.postorder(BST.root); // draws the tree
-    
+        console.log('loop')
         if(play===true){
             document.getElementById("play-button").innerHTML = "Pause";
             
