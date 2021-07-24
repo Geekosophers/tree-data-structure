@@ -1,0 +1,102 @@
+<html>
+    <head>
+        <title>BST - Tree Traversal</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/png" href="assets/favicon.png" />
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+
+    <body id="fullscreen" style="background-color: #4b5399;">
+        <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/control-scripts/fullScreen.js"></script>
+        <script src="js/control-scripts/nextStepAnimation.js"></script>
+        <script src="js/control-scripts/pauseAnimation.js"></script>
+        <script src="js/BinarySearchTree.js"></script>
+        <script src="js/Node.js"></script>
+        <script src="js/Line.js"></script>
+        <script src="js/Circle.js"></script>
+        <script src="js/ExtremePoints.js"></script>
+        <script src="js/sketch.js"></script>
+
+        <div style="display: flex;flex-direction: column;height: 100vh;">
+            <div>
+                <div style="text-align: center;background-color: #e14e87;padding-top: 1.5rem;font-size: 2.4rem;">
+                    <b>BST - Tree Traversal</b>
+                </div>
+        
+                <div class="base-class">
+        
+                    <div style="display: flex;flex-direction: row;padding: 1.5rem 1.5rem 0 1.5rem;">
+                        <div style="padding-right: 0.5rem;white-space: nowrap;">Nodes</div>
+                    </div>
+        
+                    <div style="padding: 1.5rem; width: 100%;">
+                        <input type="text" id="nodesInput" value="5,7,3,6,8,2,4" placeholder="Enter comma separated node values" class="input-css"/>
+                    </div>
+
+                    <div style="display: flex;flex-direction: row;padding: 1.5rem 1.5rem 0 1.5rem;">
+                        <div style="padding-right: 0.5rem;white-space: nowrap;">Traversal</div>
+                    </div>
+                    
+                    <div style="padding: 1.5rem; width: 100%;">
+                        <select name="image-type" class="select-css" style="width: 100%;" onchange="onchange_action();">
+                            <option selected="selected"></option> 
+                            <option value="Binary">Inorder</option>
+                            <option value="Grayscale">Preorder</option>
+                            <option value="Grayscale">Postorder</option>
+                        </select>
+                    </div>
+        
+                    <div style="display: flex;flex-direction: row;">
+                        <div style="padding: 0 1.5rem;">
+                            <button class="btn-6 btn-6d" onclick="constructBST()" >Construct BST</button>
+                        </div>
+                        
+                        <div style="padding: 0 1.5rem;">
+                            <button class="btn-6 btn-6d" onclick="startAnimation()">Start Animation</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="myCanvas" style="flex-grow: 1;"></div>
+        </div>
+
+        <div style="position: absolute; left: 0; bottom: 0;" >
+            <a href="https://www.geekosophers.com">
+                <button class="btn-animation">
+                    <div style="font-size: 1.2rem; text-align: left;">An Initiative by</div>
+                    <div style="font-size: 1.8rem; text-align: left;">Geekosophers</div>
+                </button>
+            </a>
+        </div>
+
+        <div class="play-pause-buttons" >
+            <button id="play-button" class="btn-animation" onclick="playAnimation();">Play</button>
+            <button class="btn-animation" onclick="nextStep();">Next Step</button>
+        </div>
+
+        <div style="position: fixed;right: 0;bottom: 0;">
+            <button id="full-screen" class="btn-animation show-for-mobile" onclick="handleFullScreen();">Full Screen</button>
+        </div>
+
+        <script>
+            var preOrderNodes = [];
+            var play = false;
+            var constructBST = function(){
+                play = false;
+                preOrderNodes = document.getElementById("nodesInput").value.split(",");
+                preOrderNodes = preOrderNodes.map(function(item) {
+                    return parseInt(item, 10);
+                });
+                setup(preOrderNodes);
+            }
+
+            var startAnimation = function(){
+                play = true;
+            }
+        </script>
+    </body>
+</html>
