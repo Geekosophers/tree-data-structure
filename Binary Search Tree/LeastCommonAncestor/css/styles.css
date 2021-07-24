@@ -139,7 +139,7 @@ button:focus {
 }
 
 @media (max-width: 45rem){
-  .show-for-mobile {
+  .show-for-desktop {
       display: none;
   }
 
@@ -148,5 +148,11 @@ button:focus {
     left: auto;
     right: 0;
     transform: translate(0, 0); 
+  }
+}
+
+@media (min-width: 45rem){
+  .show-for-mobile {
+      display: none;
   }
 }
