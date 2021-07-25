@@ -42,40 +42,57 @@ function setup(preOrderNodes) {
 
     // Creating Canvas
     var canvasDiv = document.getElementById('myCanvas');
-    var width = canvasDiv.offsetWidth;
-    var height = canvasDiv.offsetHeight;
-    var sketchCanvas = createCanvas(width,height);
+    var canvasWidth = canvasDiv.offsetWidth;
+    var canvasHeight = canvasDiv.offsetHeight;
+    var screenWidth = window.innerWidth;
+    var screenHeight = window.innerHeight;
+    var sketchCanvas = createCanvas(canvasWidth,canvasHeight);
     sketchCanvas.parent("myCanvas");
-    if(ExtPoints.bottom>height && !checkHeightOfTree){
-        var heightOfTree = ExtPoints.bottom-ExtPoints.top
-        sizeMutliplier = 1.09*heightOfTree/(heightOfTree-(ExtPoints.bottom-height));
-        checkHeightOfTree=true;
-        setup(preOrderNodes)
-        return;
-    }
-    if(ExtPoints.right>width && !checkWidthOfTree){
-        var widthOfTree = ExtPoints.right-ExtPoints.left;
-        sizeMutliplier = widthOfTree/(widthOfTree-(ExtPoints.right-width));
-        checkWidthOfTree=true;
-        setup(preOrderNodes)
-        return;
-    }
+
     if(ExtPoints.right>0 && !checkXOffset){
-        xOffset = - (width/2 - (ExtPoints.right-ExtPoints.left)/2)/2;
-        console.log(width,xOffset)
+        xOffset = canvasWidth/2 - ((ExtPoints.right-ExtPoints.left)/2 + ExtPoints.left)
         checkXOffset = true;
-        coord = [(window.innerWidth/2)+xOffset,window.innerWidth/20+yOffset]
+        coord = [(screenWidth/2)+xOffset,screenWidth/20+yOffset]
         setup(preOrderNodes)
         return;
     }
     if(ExtPoints.bottom>0 && !checkYOffset){
-        yOffset = - (height/2 - (ExtPoints.bottom-ExtPoints.top)/2)/2;
-        console.log(height,yOffset)
+        yOffset = canvasHeight/2 - ((ExtPoints.bottom-ExtPoints.top)/2 + ExtPoints.top)
         checkYOffset = true;
-        coord = [(window.innerWidth/2)+xOffset,(window.innerWidth/20)+yOffset]
+        coord = [(screenWidth/2)+xOffset,(screenWidth/20)+yOffset]
         setup(preOrderNodes)
         return;
     }
+    // if(ExtPoints.bottom>0 && !checkHeightOfTree){
+    //     var heightOfTree = ExtPoints.bottom-ExtPoints.top
+    //     sizeMutliplier = heightOfTree/canvasHeight;
+    //     console.log(sizeMutliplier)
+    //     checkHeightOfTree=true;
+    //     var widthOfTree = ExtPoints.right-ExtPoints.left;
+    //     widthOfTree/canvasWidth > sizeMutliplier ? sizeMutliplier = widthOfTree/canvasWidth : null;
+    //     console.log(sizeMutliplier)
+    //     checkWidthOfTree=true;
+    //     setup(preOrderNodes)
+    //     return;
+    // }
+    // if(ExtPoints.bottom>0 && !checkHeightOfTree){
+    //     var heightOfTree = ExtPoints.bottom-ExtPoints.top
+    //     // sizeMutliplier = heightOfTree/(heightOfTree-(ExtPoints.bottom-canvasHeight));
+    //     sizeMutliplier = heightOfTree/canvasHeight;
+    //     console.log(sizeMutliplier)
+    //     checkHeightOfTree=true;
+    //     setup(preOrderNodes)
+    //     return;
+    // }
+    // if(ExtPoints.right>0 && !checkWidthOfTree){
+    //     var widthOfTree = ExtPoints.right-ExtPoints.left;
+    //     // sizeMutliplier = widthOfTree/(widthOfTree-(ExtPoints.right-canvasWidth));
+    //     sizeMutliplier = widthOfTree/canvasWidth;
+    //     console.log(sizeMutliplier)
+    //     checkWidthOfTree=true;
+    //     setup(preOrderNodes)
+    //     return;
+    // } 
 }
 
 

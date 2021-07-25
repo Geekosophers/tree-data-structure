@@ -15,7 +15,6 @@ class BinarySearchTree{
         else
             length = height/30;
         
-
         if(this.root === null){
             newNode.coord = coord;
             newNode.parentCoord = coord;
