@@ -11,3 +11,8 @@ This repo contains the animation codes for different Tree Data Structure related
 ## Binary Search Tree- 
 ### 1. Finding node with minimum value in BST
 Animation [Link](https://animation.geekosophers.com/tree-data-structure/Binary%20Search%20Tree/FindMinNode/)
+
+### 2. Finding Least Common Ancestor in BST
+<img src="https://firebasestorage.googleapis.com/v0/b/gs-website-20870.appspot.com/o/blog-images%2Fbst-least-common-ancestor-thumbnail.png?alt=media&token=0bed0290-95a0-4727-a968-36303af90210" width="100%" height="auto" />
+
+Animation [Link](https://animation.geekosophers.com/tree-data-structure/Binary%20Search%20Tree/LeastCommonAncestor/)
