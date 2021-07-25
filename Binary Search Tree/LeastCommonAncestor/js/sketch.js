@@ -72,7 +72,7 @@ function highlight(status, circle, steps) {
   var color = '';
   switch (status) {
     case 'executing':
-      color = '#1e4265';
+      color = '#FFC300';
       break;
     case 'success':
       color = '#4caf50';
