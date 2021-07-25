@@ -1,120 +1,209 @@
 <html>
-    <head>
-        <title>BST - Least Common Ancestor</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="icon" type="image/png" href="assets/favicon.png" />
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="css/styles.css">
-    </head>
+  <head>
+    <title>BST - Least Common Ancestor</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
 
-    <body id="fullscreen" style="background-color: #4b5399;">
-        <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="js/control-scripts/fullScreen.js"></script>
-        <script src="js/control-scripts/nextStepAnimation.js"></script>
-        <script src="js/control-scripts/pauseAnimation.js"></script>
-        <script src="js/BinarySearchTree.js"></script>
-        <script src="js/Node.js"></script>
-        <script src="js/Line.js"></script>
-        <script src="js/Circle.js"></script>
-        <script src="js/ExtremePoints.js"></script>
-        <script src="js/sketch.js"></script>
+  <body id="fullscreen" style="background-color: #4b5399">
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/helpers/algorithm.js"></script>
+    <script src="js/helpers/fullScreen.js"></script>
+    <script src="js/helpers/animation.js"></script>
+    <script src="js/BinarySearchTree.js"></script>
+    <script src="js/Node.js"></script>
+    <script src="js/Line.js"></script>
+    <script src="js/Circle.js"></script>
+    <script src="js/ExtremePoints.js"></script>
+    <script src="js/sketch.js"></script>
 
-        <div class="show-for-mobile">
-            <div style="text-align: center;background-color: #e14e87;padding-top: 1.5rem;font-size: 2.4rem;">
-                <b>BST - Least Common Ancestor</b>  
+    <div class="show-for-mobile">
+      <div
+        style="
+          text-align: center;
+          background-color: #e14e87;
+          padding-top: 1.5rem;
+          font-size: 2.4rem;
+        "
+      >
+        <b>BST - Least Common Ancestor</b>
+      </div>
+      <div
+        style="
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+        "
+      >
+        The animation is not yet optimized for mobile view. Kindly open the
+        browser in desktop-view to view the animation.
+      </div>
+    </div>
+
+    <div class="show-for-desktop">
+      <div style="display: flex; flex-direction: column; height: 100vh">
+        <div>
+          <div
+            style="
+              text-align: center;
+              background-color: #e14e87;
+              padding-top: 1.5rem;
+              font-size: 2.4rem;
+            "
+          >
+            <b>BST - Least Common Ancestor</b>
+          </div>
+
+          <div class="base-class">
+            <div
+              style="
+                display: flex;
+                flex-direction: row;
+                padding: 1.5rem;
+                flex: 1;
+              "
+            >
+              <div style="padding-right: 1.5rem; white-space: nowrap">
+                Nodes
+              </div>
+              <input
+                type="text"
+                id="nodesInput"
+                value="5, 2, 3, 9, 7, 11, 6, 10, 8, 15, 1, 4, 0"
+                placeholder="Enter comma separated node values"
+                class="input-css"
+              />
             </div>
-            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-                The animation is not yet optimized for mobile view. Kindly open the browser in desktop-view to view the animation.
+
+            <div style="display: flex; flex-direction: row; padding: 1.5rem">
+              <div style="padding-right: 1.5rem; white-space: nowrap">
+                First Node
+              </div>
+              <input
+                style="width: 75px"
+                type="text"
+                id="node1"
+                value="6"
+                placeholder="Enter first node"
+                class="input-css"
+              />
             </div>
-        </div>
 
-        <div class="show-for-desktop" >
-            <div style="display: flex;flex-direction: column;height: 100vh;">
-                <div>
-                    <div style="text-align: center;background-color: #e14e87;padding-top: 1.5rem;font-size: 2.4rem;">
-                        <b>BST - Least Common Ancestor</b>
-                    </div>
-            
-                    <div class="base-class">
-            
-                        <div style="display: flex;flex-direction: row; padding: 1.5rem; flex: 1;">
-                            <div style="padding-right: 1.5rem;white-space: nowrap;">Nodes</div>
-                            <input type="text" id="nodesInput" value="5, 2, 3, 9, 7, 11, 6, 10, 8, 15, 1, 4, 0" placeholder="Enter comma separated node values" class="input-css"/>
-                        </div>
-    
-                        <div style="display: flex;flex-direction: row; padding: 1.5rem;">
-                            <div style="padding-right: 1.5rem;white-space: nowrap;">First Node</div>
-                            <input style="width: 75px" type="text" id="node1" value="6" placeholder="Enter first node" class="input-css"/>
-                        </div>
-    
-                        <div style="display: flex;flex-direction: row; padding: 1.5rem;">
-                            <div style="padding-right: 1.5rem;white-space: nowrap;">Second Node</div>
-                            <input style="width: 75px" type="text" id="node2" value="8" placeholder="Enter second node" class="input-css"/>
-                        </div>
-    
-                        <div style="display: flex;flex-direction: row;">
-                            <button style="margin: 0 1.5rem;" class="btn-6 btn-6d" onclick="constructBST()" >Construct BST</button>
-                            <button style="margin: 0 1.5rem;" class="btn-6 btn-6d" onclick="startAnimation()">Start Animation</button>
-                        </div>
-                    </div>
-                </div>
-                <div style="display: flex;flex-direction: row;flex-grow: 1;">
-                    <div id="myCanvas" style="flex-grow: 1;"></div>
-                    <div style="border-left: 6px solid #fff; height: 100%;"></div>
-                    <div style="padding: 10px;">
-                        <h3>ALGORITHM</h3>
-                        <p id="statement1">function lca(node,n1,n2){</p>
-                        <p id="statement2">&nbsp;&nbsp;&nbsp;&nbsp; if (node.data > n1 && node.data > n2) {</p>
-                        <p id="statement3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lca(node.left,n1,n2);</p>
-                        <p id="statement4">&nbsp;&nbsp;&nbsp;&nbsp; } else if (node.data < n1 && node.data < n2) { </p>
-                        <p id="statement5">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lca(node.right,n1,n2);</p>
-                        <p id="statement6">&nbsp;&nbsp;&nbsp;&nbsp; } else {</p>
-                        <p id="statement7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return node;</p>
-                        <p id="statement8">&nbsp;&nbsp;&nbsp;&nbsp; }</p>
-                        <p id="statement9">}</p>
-                    </div>
-                </div>
-                
+            <div style="display: flex; flex-direction: row; padding: 1.5rem">
+              <div style="padding-right: 1.5rem; white-space: nowrap">
+                Second Node
+              </div>
+              <input
+                style="width: 75px"
+                type="text"
+                id="node2"
+                value="8"
+                placeholder="Enter second node"
+                class="input-css"
+              />
             </div>
+
+            <div style="display: flex; flex-direction: row">
+              <button
+                style="margin: 0 1.5rem"
+                class="btn-6 btn-6d"
+                onclick="constructBST()"
+              >
+                Construct BST
+              </button>
+              <button
+                style="margin: 0 1.5rem"
+                class="btn-6 btn-6d"
+                onclick="startAnimation()"
+              >
+                Start Animation
+              </button>
+            </div>
+          </div>
         </div>
-
-        <div style="position: absolute; left: 0; bottom: 0;" >
-            <a href="https://www.geekosophers.com">
-                <button class="btn-animation">
-                    <div style="font-size: 1.2rem; text-align: left;">An Initiative by</div>
-                    <div style="font-size: 1.8rem; text-align: left;">Geekosophers</div>
-                </button>
-            </a>
+        <div style="display: flex; flex-direction: row-reverse; flex-grow: 1">
+          <div id="myCanvas" style="flex-grow: 1"></div>
+          <div style="border-left: 6px solid #fff; height: 100%"></div>
+          <div>
+            <h3 style="margin: 0; padding: 1.6rem">ALGORITHM</h3>
+            <div id="algo"></div>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <div class="play-pause-buttons" >
-            <button id="play-button" class="btn-animation" onclick="playAnimation();">Play</button>
-            <button class="btn-animation" onclick="nextStep();">Next Step</button>
-        </div>
+    <div style="position: absolute; left: 0; bottom: 0">
+      <a href="https://www.geekosophers.com">
+        <button class="btn-animation">
+          <div style="font-size: 1.2rem; text-align: left">
+            An Initiative by
+          </div>
+          <div style="font-size: 1.8rem; text-align: left">Geekosophers</div>
+        </button>
+      </a>
+    </div>
 
-        <div style="position: fixed;right: 0;bottom: 0;">
-            <button id="full-screen" class="btn-animation show-for-desktop" onclick="handleFullScreen();">Full Screen</button>
-        </div>
+    <div class="play-pause-buttons">
+      <button
+        id="play-button"
+        class="btn-animation"
+        onclick="toggleAnimation();"
+      >
+        Play
+      </button>
+      <button class="btn-animation" onclick="nextStep();">Next Step</button>
+    </div>
 
-        <script>
-            var preOrderNodes = [];
-            var play = false;
-            var constructBST = function(){
-                play = false;
-                preOrderNodes = document.getElementById("nodesInput").value.split(",");
-                var node1 = document.getElementById("node1").value.trim();
-                var node2 = document.getElementById("node2").value.trim();
-                preOrderNodes = preOrderNodes.map(function(item) {
-                    return parseInt(item, 10);
-                });
-                setup(preOrderNodes, node1, node2);
-            }
+    <div style="position: fixed; right: 0; bottom: 0">
+      <button
+        id="full-screen"
+        class="btn-animation show-for-desktop"
+        onclick="handleFullScreen();"
+      >
+        Full Screen
+      </button>
+    </div>
 
-            var startAnimation = function(){
-                play = true;
-            }
-        </script>
-    </body>
+    <script>
+      document.getElementById("algo").innerHTML = generateHtmlFromAlgo();
+      var preOrderNodes = [];
+      var animationStarted = false;
+      const animationSpeed = 500;
+      var constructBST = function () {
+        isPlayingSubject$.isPlaying = false;
+        isPlayingSubject$.clearListener();
+        document.getElementById("play-button").innerHTML = "Play";
+        animationStarted = false;
+        preOrderNodes = document.getElementById("nodesInput").value.split(",");
+        var node1 = document.getElementById("node1").value.trim();
+        var node2 = document.getElementById("node2").value.trim();
+        preOrderNodes = preOrderNodes.map(function (item) {
+          return parseInt(item, 10);
+        });
+        setup(preOrderNodes, node1, node2);
+        highlight('reset');
+        algoSteps = [];
+        currentStepIndex = 0;
+      };
+
+      var startAnimation = function () {
+        constructBST();
+        calcAlgoSteps();
+        isPlayingSubject$.isPlaying = true;
+        document.getElementById("play-button").innerHTML = "Pause";
+        if (!animationStarted) {
+          animate();
+          animationStarted = true;
+        }
+      };
+    </script>
+  </body>
 </html>
