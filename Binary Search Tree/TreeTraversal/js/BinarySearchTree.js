@@ -6,8 +6,8 @@ class BinarySearchTree{
   
     insert(data){
         var newNode = new Node(data);
-        var width = window.innerWidth;
-        var height = window.innerHeight;
+        var width = window.innerWidth/sizeMutliplier;
+        var height = window.innerHeight/sizeMutliplier;
         var length = null;
         
         if(width>height)
