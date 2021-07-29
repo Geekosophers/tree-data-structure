@@ -11,9 +11,11 @@
     <body id="fullscreen" style="background-color: #4b5399;">
         <script src="https://cdn.jsdelivr.net/npm/p5@1.2.0/lib/p5.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="js/global-variables.js"></script>
         <script src="js/control-scripts/fullScreen.js"></script>
         <script src="js/control-scripts/nextStepAnimation.js"></script>
         <script src="js/control-scripts/pauseAnimation.js"></script>
+        <script src="js/control-scripts/treeProperties.js"></script>
         <script src="js/BinarySearchTree.js"></script>
         <script src="js/Node.js"></script>
         <script src="js/Line.js"></script>
@@ -91,6 +93,7 @@
                 preOrderNodes = preOrderNodes.map(function(item) {
                     return parseInt(item, 10);
                 });
+                resetGlobalVariables();
                 setup(preOrderNodes);
             }
 
