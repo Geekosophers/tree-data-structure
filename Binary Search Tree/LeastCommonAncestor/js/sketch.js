@@ -28,15 +28,15 @@ function setup(preOrderNodes, node1, node2) {
   if (preOrderNodes) {
     preOrderNodes.forEach((data) => {
       const insertedNode = BST.insert(data);
-      if (insertedNode.circle.y < ExtPoints.top)
+      if (insertedNode.circle.y < ExtPoints.top+insertedNode.circle.length/2)
         ExtPoints.top = insertedNode.circle.y - insertedNode.circle.length / 2;
-      if (insertedNode.circle.x > ExtPoints.right)
+      if (insertedNode.circle.x > ExtPoints.right-insertedNode.circle.length/2)
         ExtPoints.right =
           insertedNode.circle.x + insertedNode.circle.length / 2;
-      if (insertedNode.circle.y > ExtPoints.bottom)
+      if (insertedNode.circle.y > ExtPoints.bottom-insertedNode.circle.length/2)
         ExtPoints.bottom =
           insertedNode.circle.y + insertedNode.circle.length / 2;
-      if (insertedNode.circle.x < ExtPoints.left)
+      if (insertedNode.circle.x < ExtPoints.left+insertedNode.circle.length/2)
         ExtPoints.left = insertedNode.circle.x - insertedNode.circle.length / 2;
     });
 

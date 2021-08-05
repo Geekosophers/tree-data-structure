@@ -1,5 +1,5 @@
 function preload() {
-  img = loadImage('assets/arrow-up.svg');
+    img = loadImage('assets/arrow-up.svg');
 }
 
 function setup(preOrderNodes) {
@@ -31,7 +31,7 @@ function setup(preOrderNodes) {
     var screenWidth = window.innerWidth;
     var screenHeight = window.innerHeight;
     var sketchCanvas = createCanvas(canvasWidth,canvasHeight);
-    sketchCanvas.parent("myCanvas");
+    sketchCanvas.parent("myCanvas");  
 
 
     if(ExtPoints.bottom>0 && !checkHeightOfTree){
@@ -43,25 +43,6 @@ function setup(preOrderNodes) {
     if(ExtPoints.bottom>0 && !checkYOffset){
         verticalCenterAlign(canvasHeight, ExtPoints, screenWidth)
     }
-    
-    // if(ExtPoints.bottom>0 && !checkHeightOfTree){
-    //     var heightOfTree = ExtPoints.bottom-ExtPoints.top
-    //     // sizeMutliplier = heightOfTree/(heightOfTree-(ExtPoints.bottom-canvasHeight));
-    //     sizeMutliplier = heightOfTree/canvasHeight;
-    //     console.log(sizeMutliplier)
-    //     checkHeightOfTree=true;
-    //     setup(preOrderNodes)
-    //     return;
-    // }
-    // if(ExtPoints.right>0 && !checkWidthOfTree){
-    //     var widthOfTree = ExtPoints.right-ExtPoints.left;
-    //     // sizeMutliplier = widthOfTree/(widthOfTree-(ExtPoints.right-canvasWidth));
-    //     sizeMutliplier = widthOfTree/canvasWidth;
-    //     console.log(sizeMutliplier)
-    //     checkWidthOfTree=true;
-    //     setup(preOrderNodes)
-    //     return;
-    // } 
 }
 
 
@@ -94,9 +75,9 @@ function draw() {
     if(preOrderNodes.length!=0){
 
         background('#4b5399');
-        let c = color(255, 204, 0);
-        fill(c);
-        rect(ExtPoints.left, ExtPoints.top, ExtPoints.right-ExtPoints.left, ExtPoints.bottom-ExtPoints.top);
+        // let c = color(255, 204, 0);
+        // fill(c);
+        // rect(ExtPoints.left, ExtPoints.top, ExtPoints.right-ExtPoints.left, ExtPoints.bottom-ExtPoints.top);
 
         BST.postorder(BST.root); // draws the tree
     
