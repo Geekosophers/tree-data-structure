@@ -16,3 +16,9 @@ Animation [Link](https://animation.geekosophers.com/tree-data-structure/Binary%2
 <img src="https://firebasestorage.googleapis.com/v0/b/gs-website-20870.appspot.com/o/blog-images%2Fbst-least-common-ancestor-thumbnail.png?alt=media&token=0bed0290-95a0-4727-a968-36303af90210" width="100%" height="auto" />
 
 Animation [Link](https://animation.geekosophers.com/tree-data-structure/Binary%20Search%20Tree/LeastCommonAncestor/)
+
+
+### 3. Tree Traversal Algorithms in BST
+<img src="https://firebasestorage.googleapis.com/v0/b/gs-website-20870.appspot.com/o/blog-images%2Fbst-tree-traversal-thumbnail%402x.png?alt=media&token=f897b88d-b37a-4f3e-9daa-c62531611ce4" width="100%" height="auto" />
+
+Animation [Link](https://animation.geekosophers.com/tree-data-structure/Binary%20Search%20Tree/TreeTraversal/)
