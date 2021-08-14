@@ -16,6 +16,7 @@
         <script src="js/control-scripts/nextStepAnimation.js"></script>
         <script src="js/control-scripts/pauseAnimation.js"></script>
         <script src="js/control-scripts/treeProperties.js"></script>
+        <script src="js/helpers/algorithm.js"></script>
         <script src="js/BinarySearchTree.js"></script>
         <script src="js/Node.js"></script>
         <script src="js/Line.js"></script>
@@ -23,68 +24,104 @@
         <script src="js/ExtremePoints.js"></script>
         <script src="js/sketch.js"></script>
 
-        <div style="display: flex;flex-direction: column;height: 100vh;">
-            <div>
-                <div style="text-align: center;background-color: #e14e87;padding-top: 1.5rem;font-size: 2.4rem;">
-                    <b>BST - Tree Traversal</b>
-                </div>
-        
-                <div class="base-class">
-        
-                    <div style="display: flex;flex-direction: row;padding: 1.5rem 1.5rem 0 1.5rem;">
-                        <div style="padding-right: 0.5rem;white-space: nowrap;">Nodes</div>
-                    </div>
-        
-                    <div style="padding: 1.5rem; width: 100%;">
-                        <input type="text" id="nodesInput" value="5,7,6,8,3,2,4" placeholder="Enter comma separated node values" class="input-css"/>
-                    </div>
+        <div class="show-for-mobile">
+            <div
+              style="
+                text-align: center;
+                background-color: #e14e87;
+                padding-top: 1.5rem;
+                font-size: 2.4rem;
+              "
+            >
+              <b>BST - Tree Traversal</b>
+            </div>
+            <div
+              style="
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+              "
+            >
+              The animation is not yet optimized for mobile view. Kindly open the
+              browser in desktop-view to view the animation.
+            </div>
+        </div>
 
-                    <div style="display: flex;flex-direction: row;padding: 1.5rem 1.5rem 0 1.5rem;">
-                        <div style="padding-right: 0.5rem;white-space: nowrap;">Traversal</div>
+        <div class="show-for-desktop">
+            <div style="display: flex;flex-direction: column;height: 100vh;">
+                <div>
+                    <div style="text-align: center;background-color: #e14e87;padding-top: 1.5rem;font-size: 2.4rem;">
+                        <b>BST - Tree Traversal</b>
                     </div>
-                    
-                    <div style="padding: 1.5rem; width: 100%;">
-                        <select name="image-type" class="select-css" style="width: 100%;" onchange="onchange_action();">
-                            <option selected="selected"></option> 
-                            <option value="Binary">Inorder</option>
-                            <option value="Grayscale">Preorder</option>
-                            <option value="Grayscale">Postorder</option>
-                        </select>
-                    </div>
-        
-                    <div style="display: flex;flex-direction: row;">
-                        <div style="padding: 0 1.5rem;">
-                            <button class="btn-6 btn-6d" onclick="constructBST()" >Construct BST</button>
+            
+                    <div class="base-class">
+            
+                        <div style="display: flex;flex-direction: row;padding: 1.5rem 1.5rem 0 1.5rem;">
+                            <div style="padding-right: 0.5rem;white-space: nowrap;">Nodes</div>
+                        </div>
+            
+                        <div style="padding: 1.5rem; width: 100%;">
+                            <input type="text" id="nodesInput" value="5,7,6,8,3,2,4" placeholder="Enter comma separated node values" class="input-css"/>
+                        </div>
+    
+                        <div style="display: flex;flex-direction: row;padding: 1.5rem 1.5rem 0 1.5rem;">
+                            <div style="padding-right: 0.5rem;white-space: nowrap;">Traversal</div>
                         </div>
                         
-                        <div style="padding: 0 1.5rem;">
-                            <button class="btn-6 btn-6d" onclick="startAnimation()">Start Animation</button>
+                        <div style="padding: 1.5rem; width: 100%;">
+                            <select name="function-type" class="select-css" style="width: 100%;" onchange="onchange_action();">
+                                <option selected="Preorder">Preorder</option> 
+                                <option value="Inorder">Inorder</option>
+                                <option value="Postorder">Postorder</option>
+                            </select>
+                        </div>
+            
+                        <div style="display: flex;flex-direction: row;">
+                            <div style="padding: 0 1.5rem;">
+                                <button class="btn-6 btn-6d" onclick="constructBST()" >Construct BST</button>
+                            </div>
+                            
+                            <div style="padding: 0 1.5rem;">
+                                <button class="btn-6 btn-6d" onclick="startAnimation()">Start Animation</button>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div style="display: flex; flex-direction: row-reverse; flex-grow: 1">
+                    <div id="myCanvas" style="flex-grow: 1"></div>
+                    <div style="border-left: 6px solid #fff; height: 100%"></div>
+                    <div>
+                      <h3 style="margin: 0; padding: 0.8rem">ALGORITHM</h3>
+                      <div id="algo"></div>
+                    </div>
+                  </div>        
+                </div>
+    
+            <div style="position: fixed; left: 0; bottom: 0;" >
+                <a href="https://www.geekosophers.com">
+                    <button class="btn-animation">
+                        <div style="font-size: 1.2rem; text-align: left;">An Initiative by</div>
+                        <div style="font-size: 1.8rem; text-align: left;">Geekosophers</div>
+                    </button>
+                </a>
             </div>
-            <div id="myCanvas" style="flex-grow: 1;"></div>
-        </div>
-
-        <div style="position: absolute; left: 0; bottom: 0;" >
-            <a href="https://www.geekosophers.com">
-                <button class="btn-animation">
-                    <div style="font-size: 1.2rem; text-align: left;">An Initiative by</div>
-                    <div style="font-size: 1.8rem; text-align: left;">Geekosophers</div>
-                </button>
-            </a>
-        </div>
-
-        <div class="play-pause-buttons" >
-            <button id="play-button" class="btn-animation" onclick="playAnimation();">Play</button>
-            <button class="btn-animation" onclick="nextStep();">Next Step</button>
-        </div>
-
-        <div style="position: fixed;right: 0;bottom: 0;">
-            <button id="full-screen" class="btn-animation show-for-desktop" onclick="handleFullScreen();">Full Screen</button>
+    
+            <div class="play-pause-buttons" >
+                <button id="play-button" class="btn-animation" onclick="playAnimation();">Play</button>
+                <button class="btn-animation" onclick="nextStep();">Next Step</button>
+            </div>
+    
+            <div style="position: fixed;right: 0;bottom: 0;">
+                <button id="full-screen" class="btn-animation show-for-desktop" onclick="handleFullScreen();">Full Screen</button>
+            </div>
         </div>
 
         <script>
+            function onchange_action(){
+                document.getElementById("algo").innerHTML = generateHtmlFromAlgo(document.getElementsByName("function-type")[0].value);
+            }
+            document.getElementById("algo").innerHTML = generateHtmlFromAlgo(document.getElementsByName("function-type")[0].value);
             var preOrderNodes = [];
             var play = false;
             var constructBST = function(){
@@ -94,11 +131,27 @@
                     return parseInt(item, 10);
                 });
                 resetGlobalVariables();
-                setup(preOrderNodes);
+                setup(preOrderNodes);  
             }
 
             var startAnimation = function(){
+                var functionType = document.getElementsByName("function-type")[0].value;
+                switch (functionType) {
+                    case 'Inorder':
+                        calcInorderAlgoSteps(node);
+                        break;
+                    case 'Preorder':
+                        calcPreorderAlgoSteps(node);
+                        break;
+                    case 'Postorder':
+                        calcPostorderAlgoSteps(node);
+                        break;
+                    case 'default':
+                        calcPreorderAlgoSteps(node);
+                }
                 play = true;
+                document.getElementById("play-button").innerHTML = "Pause";
+                loop();
             }
         </script>
     </body>

@@ -12,6 +12,8 @@ var checkWidthOfTree = false;
 var checkXOffset = false;
 var checkYOffset = false;
 let img;
+var algoSteps = [];
+var currentStepIndex = 0;
 
 function resetGlobalVariables(){
     nodes = [];
@@ -27,4 +29,6 @@ function resetGlobalVariables(){
     checkWidthOfTree = false;
     checkXOffset = false;
     checkYOffset = false;
+    algoSteps = [];
+    currentStepIndex = 0;
 }

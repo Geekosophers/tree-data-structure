@@ -43,51 +43,135 @@ function setup(preOrderNodes) {
     if(ExtPoints.bottom>0 && !checkYOffset){
         verticalCenterAlign(canvasHeight, ExtPoints, screenWidth)
     }
+
+    BST.postorder(BST.root);
+    noLoop();
 }
 
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function preOrder(node) {
-    if (node !== null) {
-        node.circle.color = '#4caf50';
-        image(img, node.circle.x-10, node.circle.y+node.circle.length/2+5, 20, 10);
-        await sleep(2000);
-        await preOrder(node.left);
-        if(node.left!=null){
-            image(img, node.circle.x-10, node.circle.y+node.circle.length/2+5, 20, 10);
-            await sleep(2000);
-        }
-        await preOrder(node.right);
-        if(node.right!=null){
-            image(img, node.circle.x-10, node.circle.y+node.circle.length/2+5, 20, 10);
-            await sleep(2000);
-        }
+function highlight([status, circle, node, steps]) {
+    var color = '';
+    switch (status) {
+        case 'executing':
+            color = '#ffcc00';
+            node ? image(img, node.circle.x-10, node.circle.y+node.circle.length/2+5, 20, 10) : null;
+            break;
+        case 'success':
+            color = '#4caf50';
+            node ? image(img, node.circle.x-10, node.circle.y+node.circle.length/2+5, 20, 10) : null;
+            break;
+        case 'image':
+            node ? image(img, node.circle.x-10, node.circle.y+node.circle.length/2+5, 20, 10) : null;
+            break;
+        case 'failure':
+            color = '#e14e87';
+            break;
+        case 'reset':
+            color = '#4b5399';
+            steps = ['algoStep1', 'algoStep2', 'algoStep3', 'algoStep4', 'algoStep5'];
     }
-    play=false;
-    document.getElementById("play-button").innerHTML = "Play";
+    if (circle) {
+        circle.color = color;
+        circle.show();
+    }
+    if (steps) steps.forEach(function (step) {
+        document.querySelector(`.${step}`).style.backgroundColor = color;
+    });
 }
 
 function draw() {
+    background('#4b5399');
+    console.log('yes')
 
-    if(preOrderNodes.length!=0){
-
-        background('#4b5399');
-        // let c = color(255, 204, 0);
-        // fill(c);
-        // rect(ExtPoints.left, ExtPoints.top, ExtPoints.right-ExtPoints.left, ExtPoints.bottom-ExtPoints.top);
-
-        BST.postorder(BST.root); // draws the tree
+    if(currentStepIndex>=algoSteps.length){ // stopping animation and draw loop
+        play = false;
+        noLoop();
+        document.getElementById("play-button").innerHTML = "Play";
+    }
     
-        if(isPlayed===false && play===true){
-            document.getElementById("play-button").innerHTML = "Pause";
-
-            // Logic for preorder traversal
-            preOrder(node);
-            isPlayed = true;
+    if(preOrderNodes.length>0){
+        BST.postorder(BST.root); // draws the tree
+        
+        if(play===true){ // for playing the animation next step
+            highlight(algoSteps[currentStepIndex])
+            currentStepIndex++;
+            frameRate(1);
         }
-        frameRate(1);
+    }
+}
+
+function calcPreorderAlgoSteps(node) {
+    algoSteps.push(['reset',null,null,null])
+    algoSteps.push(['executing', node ? node.circle : null, node, ['algoStep1']]);
+    algoSteps.push(['executing', null, node, ['algoStep2']]);
+    
+    if(node!==null){
+        algoSteps.push(['success', null, node, ['algoStep2']]);
+        algoSteps.push(['success', node.circle, node, ['algoStep3']]);
+        algoSteps.push(['success', node.circle, node, ['algoStep4']]);
+        calcPreorderAlgoSteps(node.left);
+        if(node.left!==null){
+            algoSteps.push(['success', node.circle, node, []]);
+        }
+        algoSteps.push(['success', node.circle, node, ['algoStep5']]);
+        calcPreorderAlgoSteps(node.right);
+        if(node.right!==null){
+            algoSteps.push(['success', node.circle, node, []]);
+        }
+    }  
+    else{
+        algoSteps.push(['failure', null, node, ['algoStep2']]);
+        algoSteps.push(['reset',null,null,null])
+    }
+}
+
+function calcInorderAlgoSteps(node) {
+    algoSteps.push(['reset',null,null,null])
+    algoSteps.push(['executing', node ? node.circle : null, node, ['algoStep1']]);
+    algoSteps.push(['executing', null, node, ['algoStep2']]);
+    
+    if(node!==null){
+        algoSteps.push(['success', null, node, ['algoStep2']]);
+        algoSteps.push(['success', null, node, ['algoStep3']]);
+        calcInorderAlgoSteps(node.left);
+        algoSteps.push(['success', node.circle, node, ['algoStep4']]);
+        if(node.left!==null){
+            algoSteps.push(['success', node.circle, node, []]);
+        }
+        algoSteps.push(['success', node.circle, node, ['algoStep5']]);
+        calcInorderAlgoSteps(node.right);
+        if(node.right!==null){
+            algoSteps.push(['success', node.circle, node, []]);
+        }
+    }  
+    else{
+        algoSteps.push(['failure', null, node, ['algoStep2']]);
+        algoSteps.push(['reset',null,null,null])
+    }
+}
+
+function calcPostorderAlgoSteps(node) {
+    algoSteps.push(['reset',null,null,null])
+    algoSteps.push(['executing', node ? node.circle : null, node, ['algoStep1']]);
+    algoSteps.push(['executing', null, node, ['algoStep2']]);
+    
+    if(node!==null){
+        algoSteps.push(['success', null, node, ['algoStep2']]);
+        
+        algoSteps.push(['success', null, node, ['algoStep3']]);
+        calcPostorderAlgoSteps(node.left);
+        if(node.left!==null){
+            algoSteps.push(['success', null, node, []]);
+            algoSteps.push(['reset',null,null,null])
+        }
+        algoSteps.push(['success', null, node, ['algoStep4']]);
+        calcPostorderAlgoSteps(node.right);
+        if(node.right!==null){
+            algoSteps.push(['success', null, node, []]);
+        }
+        algoSteps.push(['success', node.circle, node, ['algoStep5']]);
+    }  
+    else{
+        algoSteps.push(['failure', null, node, ['algoStep2']]);
+        algoSteps.push(['reset',null,null,null])
     }
 }

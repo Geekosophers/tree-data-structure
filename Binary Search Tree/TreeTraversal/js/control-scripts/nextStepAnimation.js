@@ -1,6 +1,6 @@
 var nextStep = function(){
     play = true;
-    redraw(1); 
+    redraw(); 
     play = false;
     document.getElementById("play-button").innerHTML = "Play";
 }
